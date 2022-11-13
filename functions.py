@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    functions.py                                       :+:      :+:    :+:    #
+#    functions.py                                       :+:         :+:        #
 #                                                     +:+ +:+         +:+      #
 #    By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 11:31:27 by llion             #+#    #+#              #
-#    Updated: 2022/11/13 14:40:44 by llion            ###   ########.fr        #
+#    Updated: 2022/11/13 18:08:29 by llion         ##########  ###########     #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,14 @@ def match_ids(id):
         except:
             raise Exception(f"ID {id} not found")
             
+def match_merimee(merimee):
+    for i in range(len(tab4)):
+        try:
+            if merimee == merimee_2[i]:
+                return i
+        except:
+            raise Exception(f"ID {id} not found")
+
 def get_arrondissement(code):
     for i in range(len(tab3["Code Officiel Commune"])):
         #print(f"code",code)
@@ -32,6 +40,10 @@ def get_arrondissement(code):
 def get_id(index):
     id = ids_1[index]
     return id
+
+def get_merimee(index):
+    merimee = merimee_1[index]
+    return merimee
 
 def get_name(index):
     name = names[index]
@@ -68,9 +80,16 @@ def get_comments(index):
         commentaire = commentaires[index]
     return commentaire
 
+def get_address(index):
+    if adresses[index] == None:
+        address = "Non Renseingé"
+    else:
+        address = adresses[index]
+    return address
+
 def get_precision(index):
     if precisions[index] == None:
-        precision = "None"
+        precision = "Non Renseigné"
     else:
         precision = precisions[index]
     return precision
