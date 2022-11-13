@@ -6,19 +6,18 @@
 #    By: noil </var/spool/mail/noil>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/28 16:55:24 by noil              #+#    #+#              #
-#    Updated: 2022/11/12 11:32:26 by llion            ###   ########.fr        #
+#    Updated: 2022/11/13 15:40:25 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 from functions import *
+from pathlib import Path
 
-print(f"len tab3: {len(tab3)}")
-
+BASE_DIR = Path(__file__).resolve().parent
 
 for i in range(len(names)):
-    tab2_index = match_ids(id)
-
     id = get_id(i)
+    tab2_index = match_ids(id)
     nom_arrondissement = get_arrondissement(int(code_commune[i]))
     name = get_name(i)
     coor_x = get_coor_x(i)
@@ -29,7 +28,7 @@ for i in range(len(names)):
     precision = get_precision(i)
     date = get_date(i)
 
-    monument = (id, name, nom_arrondissement, coor_x, coor_y, status, damage, commentaire, precision, date)
+    monument = (id, name, nom_arrondissement, coor_x, coor_y, status, damages, commentaire, precision, date)
 
     match monument[2]:
         case "Altkirch":
@@ -66,12 +65,22 @@ df_strasbourg = pd.DataFrame(strasbourg, columns = columns)
 df_thann_guebwiller = pd.DataFrame(thann_guebwiller, columns = columns)
 
 
-df_altkirch.to_csv('/home/noil/code/python/monuments3/calques/Altkirch.csv')
-df_colmar_ribeauville.to_csv('/home/noil/code/python/monuments3/calques/Colmar-Ribeauvillé.csv')
-df_haguenau_wissembourg.to_csv('/home/noil/code/python/monuments3/calques/Haguenau-Wissembourg.csv')
-df_molsheim.to_csv('/home/noil/code/python/monuments3/calques/Molsheim.csv')
-df_mulhouse.to_csv('/home/noil/code/python/monuments3/calques/Mulhouse.csv')
-df_saverne.to_csv('/home/noil/code/python/monuments3/calques/Saverne.csv')
-df_selestat_erstein.to_csv('/home/noil/code/python/monuments3/calques/Sélestat-Erstein.csv')
-df_strasbourg.to_csv('/home/noil/code/python/monuments3/calques/Strasbourg.csv')
-df_thann_guebwiller.to_csv('/home/noil/code/python/monuments3/calques/Thann-Guebwiller.csv')
+df_altkirch.to_csv(f'{BASE_DIR}/calques/Altkirch.csv')
+print(f"fichier crée")
+df_colmar_ribeauville.to_csv(f'{BASE_DIR}/calques/Colmar-Ribeauvillé.csv')
+print(f"fichier crée")
+df_haguenau_wissembourg.to_csv(f'{BASE_DIR}/calques/Haguenau-Wissembourg.csv')
+print(f"fichier crée")
+df_molsheim.to_csv(f'{BASE_DIR}/calques/Molsheim.csv')
+print(f"fichier crée")
+df_mulhouse.to_csv(f'{BASE_DIR}/calques/Mulhouse.csv')
+print(f"fichier crée")
+df_saverne.to_csv(f'{BASE_DIR}/calques/Saverne.csv')
+print(f"fichier crée")
+df_selestat_erstein.to_csv(f'{BASE_DIR}/calques/Sélestat-Erstein.csv')
+print(f"fichier crée")
+df_strasbourg.to_csv(f'{BASE_DIR}/calques/Strasbourg.csv')
+print(f"fichier crée")
+df_thann_guebwiller.to_csv(f'{BASE_DIR}/calques/Thann-Guebwiller.csv')
+print(f"fichier crée")
+

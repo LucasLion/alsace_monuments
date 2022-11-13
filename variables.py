@@ -6,7 +6,7 @@
 #    By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 11:35:41 by llion             #+#    #+#              #
-#    Updated: 2022/11/12 11:35:45 by llion            ###   ########.fr        #
+#    Updated: 2022/11/13 14:30:28 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ thann_guebwiller = []
 
 tab1 = pd.read_excel("tabs/liste_up_immeubleLM.ods")
 tab2 = pd.read_excel("tabs/liste_bilan_sanitaire.ods")
+print(tab2["Dernier État sanitaire d'Agrégée"])
 tab3 = pd.read_excel("tabs/georef-france-commune.ods")
 
 ids_1 = tab1["Id. AgrÉgée"]

@@ -6,7 +6,7 @@
 #    By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 11:31:27 by llion             #+#    #+#              #
-#    Updated: 2022/11/12 11:32:28 by llion            ###   ########.fr        #
+#    Updated: 2022/11/13 14:40:44 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,6 @@ def match_ids(id):
         except:
             raise Exception(f"ID {id} not found")
             
-print(f"len codee commune: {len(code_commune)}")
-
 def get_arrondissement(code):
     for i in range(len(tab3["Code Officiel Commune"])):
         #print(f"code",code)
@@ -32,22 +30,22 @@ def get_arrondissement(code):
             return nom_arrondissements[i]
 
 def get_id(index):
-    id = ids_1[i]
+    id = ids_1[index]
     return id
 
 def get_name(index):
-    name = names[i]
+    name = names[index]
     return name
 
 def get_coor_x(index):
-    if type(coordinates[i]) is not float:
-        co = coordinates[i].split(";")
+    if type(coordinates[index]) is not float:
+        co = coordinates[index].split(";")
         coor_x = (co[1].replace(",", "."))
     return coor_x
 
 def get_coor_y(index):
-    if type(coordinates[i]) is not float:
-        co = coordinates[i].split(";")
+    if type(coordinates[index]) is not float:
+        co = coordinates[index].split(";")
         coor_y = (co[2].replace(",", "."))
     return coor_y
 
@@ -59,23 +57,27 @@ def get_status(index):
     return status
 
 def get_damages(index):
-    damage = damages[i]
+    damage = damages[index]
+    return damage
 
 def get_comments(index):
 
-    if commentaires[i] == None:
+    if commentaires[index] == None:
         commentaire = "None"
     else:
-        commentaire = commentaires[i]
+        commentaire = commentaires[index]
+    return commentaire
 
 def get_precision(index):
-    if precisions[i] == None:
+    if precisions[index] == None:
         precision = "None"
     else:
-        precision = precisions[i]
+        precision = precisions[index]
+    return precision
 
 def get_date(index):
-    if tab2["Dernier État sanitaire d'Agrégée"][tab2_index]:
-        date = tab2["Date du dernier état sanitaire d'Agrégée"][tab2_index]
+    if tab2["Dernier État sanitaire d'Agrégée"][index]:
+        date = tab2["Date du dernier état sanitaire d'Agrégée"][index]
     else:
         date = "Non renseigné"
+    return date
