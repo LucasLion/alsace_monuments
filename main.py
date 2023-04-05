@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    main.py                                            :+:         :+:        #
+#    main.py                                            :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: noil </var/spool/mail/noil>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/28 16:55:24 by noil              #+#    #+#              #
-#    Updated: 2022/11/13 18:55:19 by llion         ##########  ###########     #
+#    Updated: 2023/04/05 16:15:14 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent
 for i in range(len(names)):
     id = get_id(i)
     merimee = get_merimee(i)
-    
+
     matched_index = match_ids(id)
     matched_merimee = match_merimee(merimee)
 
@@ -66,12 +66,11 @@ for i in range(len(names)):
 columns = ['ID', 'Nom', 'Arrondissemnt', 'Coor_x', 'Coor_y', 'Status', 'Dommages', 'Commentaire', 'Précision', 'Date']
 
 df_altkirch = pd.DataFrame(altkirch, columns = columns)
-print(df_altkirch)
 df_colmar_ribeauville = pd.DataFrame(colmar_ribeauville, columns = columns)
 df_haguenau_wissembourg = pd.DataFrame(haguenau_wissembourg, columns = columns)
 df_molsheim = pd.DataFrame(molsheim, columns = columns)
 df_mulhouse = pd.DataFrame(mulhouse, columns = columns)
-df_saverne = pd.DataFrame(saverne, columns = columns) 
+df_saverne = pd.DataFrame(saverne, columns = columns)
 df_selestat_erstein = pd.DataFrame(selestat_erstein, columns = columns)
 df_strasbourg = pd.DataFrame(strasbourg, columns = columns)
 df_thann_guebwiller = pd.DataFrame(thann_guebwiller, columns = columns)

@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    functions.py                                       :+:         :+:        #
+#    functions.py                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 11:31:27 by llion             #+#    #+#              #
-#    Updated: 2022/11/13 18:08:29 by llion         ##########  ###########     #
+#    Updated: 2023/04/05 16:14:44 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ def match_ids(id):
                 return i
         except:
             raise Exception(f"ID {id} not found")
-            
+
 def match_merimee(merimee):
     for i in range(len(tab4)):
         try:
