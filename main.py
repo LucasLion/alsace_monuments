@@ -6,84 +6,67 @@
 #    By: noil </var/spool/mail/noil>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/28 16:55:24 by noil              #+#    #+#              #
-#    Updated: 2023/04/05 16:15:14 by llion            ###   ########.fr        #
+#    Updated: 2023/04/05 19:20:08 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 from functions import *
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent
+def parse_for_one_person(tab, return_list):
+    for i in range(len(tab)):
+        id = get_id(i)
+        merimee = get_merimee(i)
+        matched_index = match_ids(id)
+        matched_merimee = match_merimee(merimee)
+        nom_arrondissement = get_arrondissement(int(code_commune[i]))
+        name = get_name(i)
+        coor_x = get_coor_x(i)
+        coor_y = get_coor_y(i)
+        status = get_status(matched_index)
+        damages = get_damages(i, tab)
+        commentaire = get_comments(i)
+        adresse = get_address(i)
+        if adresse == None:
+            adresse = "Non Renseigné"
 
-for i in range(len(names)):
-    id = get_id(i)
-    merimee = get_merimee(i)
+        if matched_merimee == None:
+            precision = "Non Renseigné"
+        else:
+            precision = get_precision(matched_merimee)
+        date = get_date(i, tab)
 
-    matched_index = match_ids(id)
-    matched_merimee = match_merimee(merimee)
+        monument = (id, name, nom_arrondissement, coor_x, coor_y, status, damages, commentaire, precision, date)
+        return_list.append(monument)
+    return (return_list)
 
-    nom_arrondissement = get_arrondissement(int(code_commune[i]))
-    name = get_name(i)
-    coor_x = get_coor_x(i)
-    coor_y = get_coor_y(i)
-    status = get_status(matched_index)
-    damages = get_damages(i)
-    commentaire = get_comments(i)
-    adresse = get_address(i)
-    if adresse == None:
-        adresse = "Non Renseigné"
+def create_csv(list, name):
+    columns = ['ID', 'Nom', 'Arrondissemnt', 'Coor_x', 'Coor_y', 'Status', 'Dommages', 'Commentaire', 'Précision', 'Date']
+    frame = pd.DataFrame(list, columns=columns)
+    frame.to_csv(name, index=False)
 
-    if matched_merimee == None:
-        precision = "Non Renseigné"
-    else:
-        precision = get_precision(matched_merimee)
-    date = get_date(i)
+def main():
+    BASE_DIR = Path(__file__).resolve().parent
 
-    monument = (id, name, nom_arrondissement, coor_x, coor_y, status, damages, commentaire, precision, date)
+    list_AC = parse_for_one_person(pers1, AC)
+    create_csv(list_AC, BASE_DIR / 'calques_personels/AC.csv')
+    list_ED = parse_for_one_person(pers2, ED)
+    create_csv(list_ED, BASE_DIR / 'calques_personels/ED.csv')
+    list_KB = parse_for_one_person(pers3, KB)
+    create_csv(list_KB, BASE_DIR / 'calques_personels/KB.csv')
+    list_LM = parse_for_one_person(pers4, LM)
+    create_csv(list_LM, BASE_DIR / 'calques_personels/LM.csv')
+    list_MHC = parse_for_one_person(pers5, MHC)
+    create_csv(list_MHC, BASE_DIR / 'calques_personels/MHC.csv')
+    list_PC = parse_for_one_person(pers6, PC)
+    create_csv(list_PC, BASE_DIR / 'calques_personels/PC.csv')
+    list_RRM = parse_for_one_person(pers7, RRM)
+    create_csv(list_RRM, BASE_DIR / 'calques_personels/RRM.csv')
+    list_TG = parse_for_one_person(pers8, TG)
+    create_csv(list_TG, BASE_DIR / 'calques_personels/TG.csv')
+    list_UDAP = parse_for_one_person(pers9, UDAP)
+    create_csv(list_UDAP, BASE_DIR / 'calques_personels/UDAP.csv')
+    print(f"fichiers créés dans le dossier calques_personels")
 
-    match monument[2]:
-        case "Altkirch":
-            altkirch.append(monument)
-        case "Colmar-Ribeauvillé":
-            colmar_ribeauville.append(monument)
-        case "Haguenau-Wissembourg":
-            haguenau_wissembourg.append(monument)
-        case "Molsheim":
-            molsheim.append(monument)
-        case "Mulhouse":
-            mulhouse.append(monument)
-        case "Saverne":
-            saverne.append(monument)
-        case "Sélestat-Erstein":
-            selestat_erstein.append(monument)
-        case "Strasbourg":
-            strasbourg.append(monument)
-        case "Thann-Guebwiller":
-            thann_guebwiller.append(monument)
-
-    monuments.append(monument)
-
-columns = ['ID', 'Nom', 'Arrondissemnt', 'Coor_x', 'Coor_y', 'Status', 'Dommages', 'Commentaire', 'Précision', 'Date']
-
-df_altkirch = pd.DataFrame(altkirch, columns = columns)
-df_colmar_ribeauville = pd.DataFrame(colmar_ribeauville, columns = columns)
-df_haguenau_wissembourg = pd.DataFrame(haguenau_wissembourg, columns = columns)
-df_molsheim = pd.DataFrame(molsheim, columns = columns)
-df_mulhouse = pd.DataFrame(mulhouse, columns = columns)
-df_saverne = pd.DataFrame(saverne, columns = columns)
-df_selestat_erstein = pd.DataFrame(selestat_erstein, columns = columns)
-df_strasbourg = pd.DataFrame(strasbourg, columns = columns)
-df_thann_guebwiller = pd.DataFrame(thann_guebwiller, columns = columns)
-
-
-df_altkirch.to_csv(f'{BASE_DIR}/calques/Altkirch.csv', index = False)
-df_colmar_ribeauville.to_csv(f'{BASE_DIR}/calques/Colmar-Ribeauvillé.csv', index = False)
-df_haguenau_wissembourg.to_csv(f'{BASE_DIR}/calques/Haguenau-Wissembourg.csv', index = False)
-df_molsheim.to_csv(f'{BASE_DIR}/calques/Molsheim.csv', index = False)
-df_mulhouse.to_csv(f'{BASE_DIR}/calques/Mulhouse.csv', index = False)
-df_saverne.to_csv(f'{BASE_DIR}/calques/Saverne.csv', index = False)
-df_selestat_erstein.to_csv(f'{BASE_DIR}/calques/Sélestat-Erstein.csv', index = False)
-df_strasbourg.to_csv(f'{BASE_DIR}/calques/Strasbourg.csv', index = False)
-df_thann_guebwiller.to_csv(f'{BASE_DIR}/calques/Thann-Guebwiller.csv', index = False)
-print(f"fichiers crées")
-
+if __name__ == "__main__":
+    main()

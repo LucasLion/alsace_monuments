@@ -6,7 +6,7 @@
 #    By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 11:31:27 by llion             #+#    #+#              #
-#    Updated: 2023/04/05 16:14:44 by llion            ###   ########.fr        #
+#    Updated: 2023/04/05 19:01:17 by llion            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,8 @@ def get_status(index):
         status = "Non renseigné"
     return status
 
-def get_damages(index):
+def get_damages(index, tab):
+    damages = tab["Pourcentage de dégradation"]
     damage = damages[index]
     return damage
 
@@ -94,9 +95,9 @@ def get_precision(index):
         precision = precisions[index]
     return precision
 
-def get_date(index):
-    if tab2["Dernier État sanitaire d'Agrégée"][index]:
-        date = tab2["Date du dernier état sanitaire d'Agrégée"][index]
+def get_date(index, tab):
+    if tab["Dernier État sanitaire d'Agrégée"][index]:
+        date = tab["Date du dernier état sanitaire d'Agrégée"][index]
     else:
         date = "Non renseigné"
     return date
