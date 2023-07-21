@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    variables.py                                       :+:         :+:        #
+#    variables.py                                       :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: llion <llion@student.42mulhouse.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 11:35:41 by llion             #+#    #+#              #
-#    Updated: 2022/11/13 18:15:06 by llion         ##########  ###########     #
+#    Updated: 2023/07/21 16:07:04 by llion@student    ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ tab1 = pd.read_excel("tabs/liste_up_immeubleLM.ods")
 tab2 = pd.read_excel("tabs/liste_bilan_sanitaire.ods")
 tab3 = pd.read_excel("tabs/georef-france-commune.ods")
 tab4 = pd.read_excel("tabs/merimee-MH-valid.xlsx")
-#tab4 = pd.read_csv('tabs/merimee-MH-valid.ods', encoding='latin-1', error_bad_lines = False)
 
 ids_1 = tab1["Id. AgrÉgée"]
 ids_2 = tab2["Identifiant Agrégée"]
